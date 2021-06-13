@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} Ajouter un contenu (WTF) {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Ajouter du nouveau contenu
+			</p>
+			<form action="" method="POST" novalidate>
+				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+				{{ form.hidden_tag() }}
+				<div class="form-group">
+					<p>
+						{{ form.nom_contenu_wtf.label }}<br>
+						{{ form.nom_contenu_wtf(size=32) }}<br>
+						{% for error in form.nom_contenu_wtf.errors %}
+						<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+					<p>
+						{{ form.nom_nbcontenu_wtf.label }}<br>
+						{{ form.nom_contenu_wtf(size=32) }}<br>
+						{% for error in form.nom_contenu_wtf.errors %}
+						<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+
+					<select id="piece" name="piece" style="height:30px;" required>
+						{% for row in piece%}
+						<option name="" value="{{row.id_piece}}">{{row.Nom_piece}}</option>
+						{% endfor %}
+					</select>
+					<br/>
+					<br/>
+				</div>
+
+				<br>
+				{{ form.submit(class="btn btn-primary") }}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

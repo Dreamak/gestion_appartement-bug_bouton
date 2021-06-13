@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Ajouter des origines (WTF) {% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Ajouter un nouveau droit (WTForms)
+			</p>
+			<form action="" method="POST" novalidate>
+				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+                {{ form.hidden_tag() }}
+				<div class="form-group">
+					<p>
+                        Origine : <br>
+						{{ form.origine_wtf(size=40) }}<br>
+						{% for error in form.droit_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+                </div>
+				{{ form.submit(class="btn btn-primary") }}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

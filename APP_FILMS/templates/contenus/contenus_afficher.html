@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %} Afficher contenus {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Contenu à disposition.
+			</p>
+            <table class="table table-bordered table-sm">
+            {% if data %}
+                <thead>
+                    <tr>
+                        <th class="align-middle">
+                            id
+                        </th>
+                        <th class="align-middle">
+                            Contenu
+                        </th>
+                        <th class="align-middle">
+							Nombre de contenu
+                        </th>
+                        <th class="align-middle">
+							Piece
+                        </th>
+                        <th class="align-middle">
+
+                        </th>
+						<th class="align-middle">
+
+                        </th>
+                    </tr>
+                </thead>
+            {% endif %}
+
+            {% for row in data %}
+				<tbody>
+					<tr>
+						<td class="align-middle">
+							{{ row.id_contenu }}
+						</td>
+						<td class="align-middle">
+							{{ row.contenu }}
+						</td>
+						<td class="align-middle">
+							{{ row.Nb_contenu }}
+						</td>
+						<td class="align-middle">
+							{{ row.Nom_piece }}
+						</td>
+
+
+						<td class="text-center" class="align-middle">
+							<a class="btn btn-warning" href="{{ url_for('contenu_update_wtf', id_contenu_btn_edit_html=row.id_contenu) }}" role="button">Edit</a>
+						</td>
+						<td class="text-center" class="align-middle">
+							<a class="btn btn-danger" href="{{ url_for('contenu_delete_wtf', id_contenu_btn_delete_html=row.id_contenu) }}" role="button">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+            {% else %}
+				<tbody>
+					<tr>
+						<td>
+							Aucun contenu.
+						</td>
+
+						<td>
+							<a class="btn btn-primary" href="{{ url_for('contenus_ajouter_wtf') }}" role="button">Ajouter</a>
+						</td>
+					</tr>
+				</tbody>
+            {% endfor %}
+
+			</table>
+			<td class="text-center" class="align-middle">
+							<a class="btn btn-primary" href="{{ url_for('contenus_ajouter_wtf') }}" role="button">Ajouter</a>
+						</td>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
